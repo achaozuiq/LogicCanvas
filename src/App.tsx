@@ -1,3 +1,5 @@
+/** @format */
+
 import {
   MouseEvent,
   useEffect,
@@ -29,7 +31,6 @@ import {
 
 export default function App() {
   const initialTool: ToolsType = Tools.selection;
-
   const { elements, setElements, undo, redo } = useHistory([]);
   const [panOffset, setPanOffset] = useState({ x: 0, y: 0 });
   const [startPanMousePosition, setStartPanMousePosition] = useState({
@@ -294,13 +295,14 @@ export default function App() {
         const safeOffsetY = offsetY ?? 0;
         const newX1 = clientX - safeOffsetX;
         const newY1 = clientY - safeOffsetY;
+
         // 🫐 Calculate the new position for x2 and y2 based on the original size
         const newX2 = newX1 + (x2 - x1);
         const newY2 = newY1 + (y2 - y1);
         const options =
-          type === "text" && selectedElement.text
-            ? { text: selectedElement.text }
-            : undefined;
+          type === "text" && selectedElement.text ?
+            { text: selectedElement.text }
+          : undefined;
         updateElement(id, newX1, newY1, newX2, newY2, type, options);
       }
     } else if (
@@ -392,24 +394,26 @@ export default function App() {
         scale={scale}
         setScale={setScale}
       />
-      {action === "writing" ? (
+      {action === "writing" ?
         <textarea
           ref={textAreaRef}
           onBlur={handleBlur}
           className="textArea"
           style={{
-            top: selectedElement
-              ? (selectedElement.y1 - 2) * scale +
+            top:
+              selectedElement ?
+                (selectedElement.y1 - 2) * scale +
                 panOffset.y * scale -
                 scaleOffset.y
               : 0,
-            left: selectedElement
-              ? selectedElement.x1 * scale + panOffset.x * scale - scaleOffset.x
+            left:
+              selectedElement ?
+                selectedElement.x1 * scale + panOffset.x * scale - scaleOffset.x
               : 0,
             font: `${24 * scale}px sans-serif`,
           }}
         />
-      ) : null}
+      : null}
       <canvas
         id="canvas"
         width={window.innerWidth}
