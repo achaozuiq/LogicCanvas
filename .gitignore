@@ -1,0 +1,72 @@
+# 金融项目核心安全规则 - 严格保护敏感数据
+# ==================================================
+# 1. 绝对禁止提交任何密钥和证书
+*.pem
+*.key
+*.jks
+*.p12
+*.cer
+*.crt
+
+# 2. 金融数据文件严格隔离（交易/审计数据）
+data/
+reports/
+tmp/
+*.csv
+*.xlsx
+*.xls
+*.pdf
+*.docx
+
+# 3. 数据库文件（含SQLite金融交易库）
+*.db
+*.sqlite
+*.sqlite3
+
+# 4. 环境配置（必须包含金融环境变量）
+.env
+.env.production
+.env.staging
+.env.finance
+
+# Node.js 基础规则 - 金融项目必需
+# ==================================================
+node_modules/
+package-lock.json
+yarn.lock
+npm-debug.log*
+yarn-error.log*
+
+# 构建输出（金融系统严禁提交编译产物）
+/dist/
+/out/
+/lib/
+/build/
+
+# 运行时数据（金融系统临时文件）
+.pnp
+.pnp.js
+.nyc_output/
+coverage/
+
+# TypeScript 构建信息
+*.tsbuildinfo
+
+# 金融系统日志规范
+*.log
+audit.log
+transaction.log
+
+# VSCode 配置（仅保留开发环境必需）
+.vscode/settings.json
+.vscode/launch.json
+.vscode/extensions.json
+
+# 系统文件（金融服务器规范）
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# 忽略 VS Code 临时文件
+.vscode/ghosts/
+./audio
